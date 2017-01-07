@@ -1,0 +1,133 @@
+I0106 21:29:47.037046 12963 caffe.cpp:343] Use GPU with device ID 0
+==12963== NVPROF is profiling process 12963, command: ./caffe/build/tools/caffe time --model=proto_noGradInput/conv1.prototxt --iterations=10 --gpu 0 --logtostderr=1
+I0106 21:29:48.182899 12963 upgrade_proto.cpp:53] Attempting to upgrade input file specified using deprecated V1LayerParameter: proto_noGradInput/conv1.prototxt
+I0106 21:29:48.183013 12963 upgrade_proto.cpp:61] Successfully upgraded file specified using deprecated V1LayerParameter
+I0106 21:29:48.183048 12963 upgrade_proto.cpp:67] Attempting to upgrade input file specified using deprecated input fields: proto_noGradInput/conv1.prototxt
+I0106 21:29:48.183068 12963 upgrade_proto.cpp:70] Successfully upgraded file specified using deprecated input fields.
+W0106 21:29:48.183079 12963 upgrade_proto.cpp:72] Note that future Caffe releases will only support input layers and not input fields.
+I0106 21:29:48.183209 12963 net.cpp:58] Initializing net from parameters: 
+name: "ConvLayer_3x96x11x11"
+state {
+  phase: TRAIN
+  level: 0
+  stage: ""
+}
+layer {
+  name: "input"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 128
+      dim: 3
+      dim: 128
+      dim: 128
+    }
+  }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+I0106 21:29:48.183303 12963 layer_factory.hpp:77] Creating layer input
+I0106 21:29:48.183348 12963 net.cpp:100] Creating Layer input
+I0106 21:29:48.183362 12963 net.cpp:408] input -> data
+I0106 21:29:48.219310 12963 net.cpp:150] Setting up input
+I0106 21:29:48.219379 12963 net.cpp:157] Top shape: 128 3 128 128 (6291456)
+I0106 21:29:48.219388 12963 net.cpp:165] Memory required for data: 25165824
+I0106 21:29:48.219408 12963 layer_factory.hpp:77] Creating layer conv1
+I0106 21:29:48.219458 12963 net.cpp:100] Creating Layer conv1
+I0106 21:29:48.219473 12963 net.cpp:434] conv1 <- data
+I0106 21:29:48.219497 12963 net.cpp:408] conv1 -> conv1
+I0106 21:29:48.222489 12963 net.cpp:150] Setting up conv1
+I0106 21:29:48.222513 12963 net.cpp:157] Top shape: 128 96 118 118 (171098112)
+I0106 21:29:48.222522 12963 net.cpp:165] Memory required for data: 709558272
+I0106 21:29:48.222561 12963 net.cpp:228] conv1 does not need backward computation.
+I0106 21:29:48.222570 12963 net.cpp:228] input does not need backward computation.
+I0106 21:29:48.222578 12963 net.cpp:270] This network produces output conv1
+I0106 21:29:48.222592 12963 net.cpp:283] Network initialization done.
+I0106 21:29:48.222628 12963 caffe.cpp:355] Performing Forward
+I0106 21:29:48.241554 12963 caffe.cpp:360] Initial loss: 0
+I0106 21:29:48.241598 12963 caffe.cpp:361] Performing Backward
+I0106 21:29:48.241611 12963 caffe.cpp:369] *** Benchmark begins ***
+I0106 21:29:48.241616 12963 caffe.cpp:370] Testing for 10 iterations.
+I0106 21:29:48.829329 12963 caffe.cpp:398] Iteration: 1 forward-backward time: 460.204 ms.
+I0106 21:29:49.283870 12963 caffe.cpp:398] Iteration: 2 forward-backward time: 454.389 ms.
+I0106 21:29:49.738354 12963 caffe.cpp:398] Iteration: 3 forward-backward time: 454.354 ms.
+I0106 21:29:50.192750 12963 caffe.cpp:398] Iteration: 4 forward-backward time: 454.252 ms.
+I0106 21:29:50.647199 12963 caffe.cpp:398] Iteration: 5 forward-backward time: 454.314 ms.
+I0106 21:29:51.101565 12963 caffe.cpp:398] Iteration: 6 forward-backward time: 454.205 ms.
+I0106 21:29:51.555955 12963 caffe.cpp:398] Iteration: 7 forward-backward time: 454.275 ms.
+I0106 21:29:52.010306 12963 caffe.cpp:398] Iteration: 8 forward-backward time: 454.247 ms.
+I0106 21:29:52.464720 12963 caffe.cpp:398] Iteration: 9 forward-backward time: 454.279 ms.
+I0106 21:29:52.918946 12963 caffe.cpp:398] Iteration: 10 forward-backward time: 454.073 ms.
+I0106 21:29:52.919014 12963 caffe.cpp:401] Average time per layer: 
+I0106 21:29:52.919028 12963 caffe.cpp:404]      input	forward: 0.0191104 ms.
+I0106 21:29:52.919059 12963 caffe.cpp:407]      input	backward: 0.0170208 ms.
+I0106 21:29:52.919066 12963 caffe.cpp:404]      conv1	forward: 139.723 ms.
+I0106 21:29:52.919075 12963 caffe.cpp:407]      conv1	backward: 314.865 ms.
+I0106 21:29:52.919114 12963 caffe.cpp:412] Average Forward pass: 139.821 ms.
+I0106 21:29:52.919126 12963 caffe.cpp:414] Average Backward pass: 314.966 ms.
+I0106 21:29:52.919147 12963 caffe.cpp:416] Average Forward-Backward: 454.98 ms.
+I0106 21:29:52.919167 12963 caffe.cpp:418] Total Time: 4549.8 ms.
+I0106 21:29:52.919178 12963 caffe.cpp:419] *** Benchmark ends ***
+==12963== Profiling application: ./caffe/build/tools/caffe time --model=proto_noGradInput/conv1.prototxt --iterations=10 --gpu 0 --logtostderr=1
+==12963== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 53.45%  2.49093s      1280  1.9460ms  1.9244ms  1.9795ms  sgemm_sm35_ldg_tn_32x16x64x8x16
+ 24.84%  1.15778s      1408  822.29us  810.51us  832.40us  sgemm_sm35_ldg_nn_64x16x64x16x16
+ 10.15%  473.17ms      2688  176.03us  173.00us  181.48us  void caffe::im2col_gpu_kernel<float>(int, float const *, int, int, int, int, int, int, int, int, int, int, int, int, caffe::im2col_gpu_kernel<float>*)
+  8.90%  414.78ms      1280  324.05us  321.17us  326.74us  void gemv2T_kernel_val<float, int=128, int=16, int=2, int=2, bool=0>(int, int, float, float const *, int, float const *, int, float, float*, int)
+  2.50%  116.52ms      1408  82.753us  80.996us  84.260us  void gemmk1_kernel<float, int=256, int=5, bool=0, bool=0, bool=0, bool=0>(cublasGemmk1Params<float>, float const *, float const *, float*)
+  0.15%  7.1725ms         7  1.0247ms  3.9040us  3.4002ms  [CUDA memset]
+  0.00%  108.13us        14  7.7230us  1.2800us  16.865us  [CUDA memcpy HtoD]
+
+==12963== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 81.83%  4.45019s        72  61.808ms  3.0180us  306.78ms  cudaEventSynchronize
+ 13.41%  729.25ms        12  60.771ms  12.562us  693.47ms  cudaFree
+  3.02%  164.23ms      8064  20.365us  9.0000us  204.76us  cudaLaunch
+  0.70%  37.846ms        19  1.9919ms  11.469us  35.827ms  cudaMallocHost
+  0.41%  22.067ms     96384     228ns     167ns  457.48us  cudaSetupArgument
+  0.25%  13.564ms        14  968.83us  32.078us  3.7509ms  cudaMemcpy
+  0.13%  6.8220ms        13  524.77us  14.242us  2.0969ms  cudaMalloc
+  0.05%  2.9202ms       249  11.727us     173ns  480.32us  cuDeviceGetAttribute
+  0.05%  2.8981ms      8064     359ns     216ns  12.868us  cudaConfigureCall
+  0.05%  2.5376ms       142  17.870us  2.0910us  38.623us  cudaEventRecord
+  0.03%  1.5881ms      5376     295ns     245ns  5.9100us  cudaGetLastError
+  0.03%  1.5351ms        19  80.796us  12.090us  422.56us  cudaFreeHost
+  0.02%  884.87us         1  884.87us  884.87us  884.87us  cudaGetDeviceProperties
+  0.02%  867.94us      2688     322ns     258ns  1.9120us  cudaPeekAtLastError
+  0.01%  362.23us         3  120.74us  95.114us  136.30us  cuDeviceTotalMem
+  0.01%  333.62us         7  47.660us  24.735us  66.248us  cudaMemset
+  0.00%  257.18us         3  85.727us  80.865us  94.440us  cuDeviceGetName
+  0.00%  236.10us        72  3.2790us  2.0470us  12.338us  cudaEventElapsedTime
+  0.00%  99.151us        28  3.5410us     900ns  33.447us  cudaEventDestroy
+  0.00%  68.099us        28  2.4320us  1.0600us  8.6780us  cudaEventCreate
+  0.00%  48.786us        23  2.1210us     503ns  12.731us  cudaGetDevice
+  0.00%  18.949us        16  1.1840us     787ns  3.6060us  cudaEventCreateWithFlags
+  0.00%  18.237us        20     911ns     419ns  1.9560us  cudaSetDevice
+  0.00%  8.0620us        10     806ns     398ns  2.8660us  cudaDeviceGetAttribute
+  0.00%  3.0010us         4     750ns     250ns  1.6510us  cuDeviceGetCount
+  0.00%  1.6710us         4     417ns     267ns     764ns  cuDeviceGet
+  0.00%  1.4270us         2     713ns     688ns     739ns  cuInit
+  0.00%  1.2690us         2     634ns     532ns     737ns  cuDriverGetVersion

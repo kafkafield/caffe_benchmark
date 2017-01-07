@@ -1,0 +1,110 @@
+I0107 00:56:48.490950 13890 caffe.cpp:343] Use GPU with device ID 0
+==13890== NVPROF is profiling process 13890, command: ./caffe/build/tools/caffe time --model=proto_forceGradInput/a5.pt --iterations=10 --gpu 0 --logtostderr=1
+I0107 00:56:49.327298 13890 upgrade_proto.cpp:53] Attempting to upgrade input file specified using deprecated V1LayerParameter: proto_forceGradInput/a5.pt
+I0107 00:56:49.327384 13890 upgrade_proto.cpp:61] Successfully upgraded file specified using deprecated V1LayerParameter
+I0107 00:56:49.327412 13890 upgrade_proto.cpp:67] Attempting to upgrade input file specified using deprecated input fields: proto_forceGradInput/a5.pt
+I0107 00:56:49.327427 13890 upgrade_proto.cpp:70] Successfully upgraded file specified using deprecated input fields.
+W0107 00:56:49.327435 13890 upgrade_proto.cpp:72] Note that future Caffe releases will only support input layers and not input fields.
+I0107 00:56:49.327556 13890 net.cpp:58] Initializing net from parameters: 
+name: "ConvLayer_3x96x11x11"
+force_backward: true
+state {
+  phase: TRAIN
+  level: 0
+  stage: ""
+}
+layer {
+  name: "input"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 128
+      dim: 256
+      dim: 13
+      dim: 13
+    }
+  }
+}
+layer {
+  name: "conv5"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv3/3x3_s1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.2
+    }
+  }
+}
+I0107 00:56:49.327630 13890 layer_factory.hpp:77] Creating layer input
+I0107 00:56:49.327662 13890 net.cpp:100] Creating Layer input
+I0107 00:56:49.327674 13890 net.cpp:408] input -> data
+I0107 00:56:49.350206 13890 net.cpp:150] Setting up input
+I0107 00:56:49.350255 13890 net.cpp:157] Top shape: 128 256 13 13 (5537792)
+I0107 00:56:49.350265 13890 net.cpp:165] Memory required for data: 22151168
+I0107 00:56:49.350276 13890 layer_factory.hpp:77] Creating layer conv5
+I0107 00:56:49.350306 13890 net.cpp:100] Creating Layer conv5
+I0107 00:56:49.350323 13890 net.cpp:434] conv5 <- data
+I0107 00:56:49.350342 13890 net.cpp:408] conv5 -> conv3/3x3_s1
+I0107 00:56:49.358870 13890 net.cpp:150] Setting up conv5
+I0107 00:56:49.358894 13890 net.cpp:157] Top shape: 128 256 13 13 (5537792)
+I0107 00:56:49.358902 13890 net.cpp:165] Memory required for data: 44302336
+I0107 00:56:49.358927 13890 net.cpp:228] conv5 does not need backward computation.
+I0107 00:56:49.358937 13890 net.cpp:228] input does not need backward computation.
+I0107 00:56:49.358943 13890 net.cpp:270] This network produces output conv3/3x3_s1
+I0107 00:56:49.358956 13890 net.cpp:283] Network initialization done.
+I0107 00:56:49.358986 13890 caffe.cpp:355] Performing Forward
+I0107 00:57:14.626593 13890 caffe.cpp:360] Initial loss: 0
+I0107 00:57:14.626679 13890 caffe.cpp:361] Performing Backward
+I0107 00:58:31.952786 13890 caffe.cpp:369] *** Benchmark begins ***
+I0107 00:58:31.952831 13890 caffe.cpp:370] Testing for 10 iterations.
+I0107 01:00:11.376114 13890 caffe.cpp:398] Iteration: 1 forward-backward time: 99417.7 ms.
+I0107 01:01:52.190382 13890 caffe.cpp:398] Iteration: 2 forward-backward time: 100809 ms.
+I0107 01:03:31.444980 13890 caffe.cpp:398] Iteration: 3 forward-backward time: 99249 ms.
+I0107 01:05:14.158568 13890 caffe.cpp:398] Iteration: 4 forward-backward time: 102708 ms.
+I0107 01:06:51.192123 13890 caffe.cpp:398] Iteration: 5 forward-backward time: 97028.1 ms.
+I0107 01:08:32.702196 13890 caffe.cpp:398] Iteration: 6 forward-backward time: 101504 ms.
+I0107 01:10:12.725538 13890 caffe.cpp:398] Iteration: 7 forward-backward time: 100018 ms.
+I0107 01:11:53.547224 13890 caffe.cpp:398] Iteration: 8 forward-backward time: 100816 ms.
+I0107 01:13:32.522900 13890 caffe.cpp:398] Iteration: 9 forward-backward time: 98970.1 ms.
+I0107 01:15:09.535022 13890 caffe.cpp:398] Iteration: 10 forward-backward time: 97006.7 ms.
+I0107 01:15:09.535106 13890 caffe.cpp:401] Average time per layer: 
+I0107 01:15:09.535122 13890 caffe.cpp:404]      input	forward: 0.012176 ms.
+I0107 01:15:09.535150 13890 caffe.cpp:407]      input	backward: 0.0164896 ms.
+I0107 01:15:09.535158 13890 caffe.cpp:404]      conv5	forward: 23865.6 ms.
+I0107 01:15:09.535168 13890 caffe.cpp:407]      conv5	backward: 75886.8 ms.
+I0107 01:15:09.535197 13890 caffe.cpp:412] Average Forward pass: 23865.7 ms.
+I0107 01:15:09.535208 13890 caffe.cpp:414] Average Backward pass: 75886.9 ms.
+I0107 01:15:09.535238 13890 caffe.cpp:416] Average Forward-Backward: 99752.8 ms.
+I0107 01:15:09.535259 13890 caffe.cpp:418] Total Time: 997528 ms.
+I0107 01:15:09.535270 13890 caffe.cpp:419] *** Benchmark ends ***
+==13890== Profiling application: ./caffe/build/tools/caffe time --model=proto_forceGradInput/a5.pt --iterations=10 --gpu 0 --logtostderr=1
+==13890== Profiling result:
+==13890== Metric result:
+"Device","Kernel","Invocations","Metric Name","Metric Description","Min","Max","Avg"
+"Tesla K40c (0)","sgemm_sm35_ldg_nt_128x8x128x16x16",1408,"flop_count_sp","Floating Point Operations(Single Precision)",151879680,151879680,151879680
+"Tesla K40c (0)","void gemmk1_kernel<float, int=256, int=5, bool=0, bool=0, bool=0, bool=0>(cublasGemmk1Params<float>, float const *, float const *, float*)",1408,"flop_count_sp","Floating Point Operations(Single Precision)",131144,131144,131144
+"Tesla K40c (0)","sgemm_sm35_ldg_tn_128x8x256x16x32",1408,"flop_count_sp","Floating Point Operations(Single Precision)",209387520,209387520,209387520
+"Tesla K40c (0)","sgemm_sm35_ldg_nt_64x16x128x8x32",1408,"flop_count_sp","Floating Point Operations(Single Precision)",75939840,75939840,75939840
+"Tesla K40c (0)","void gemv2T_kernel_val<float, int=128, int=16, int=2, int=2, bool=0>(int, int, float, float const *, int, float const *, int, float, float*, int)",1408,"flop_count_sp","Floating Point Operations(Single Precision)",100384,100384,100384
+"Tesla K40c (0)","sgemm_sm35_ldg_nn_64x16x64x16x16",1408,"flop_count_sp","Floating Point Operations(Single Precision)",226639872,226639872,226639872
+"Tesla K40c (0)","void caffe::col2im_gpu_kernel<float>(int, float const *, int, int, int, int, int, int, int, int, int, int, int, int, int, caffe::col2im_gpu_kernel<float>*)",1408,"flop_count_sp","Floating Point Operations(Single Precision)",350464,350464,350464
+"Tesla K40c (0)","void caffe::im2col_gpu_kernel<float>(int, float const *, int, int, int, int, int, int, int, int, int, int, int, int, caffe::im2col_gpu_kernel<float>*)",2816,"flop_count_sp","Floating Point Operations(Single Precision)",0,0,0

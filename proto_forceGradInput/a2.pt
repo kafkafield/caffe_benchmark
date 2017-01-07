@@ -1,0 +1,31 @@
+name: "ConvLayer_3x96x11x11"
+input: "data"
+input_dim: 128
+input_dim: 64
+input_dim: 27
+input_dim: 27
+force_backward: true
+layers {
+  name: "conv2"
+  type: CONVOLUTION
+  bottom: "data"
+  top: "conv2/5x5_s1"
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  convolution_param {
+    num_output: 192
+    kernel_size: 5
+    stride: 1
+	pad: 2
+    weight_filler {
+      type: "xavier"
+	  std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+	  value: 0.2
+    }
+  }
+}
